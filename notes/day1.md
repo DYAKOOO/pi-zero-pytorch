@@ -4,20 +4,20 @@
 
 Front:
 What are the core helper functions in the π0 implementation and what is their purpose?
-myqa:: Whta's t , v and d?  , what is (t / value).tanh() * value ? 
+myqa:: Whta's t , v and d in this codebase?  , what is (t / value).tanh() * value ? 
 
 
 ```python
 def exists(v):
-    return v is not None 
+    return 
 
 def default(v, d):
-    return v if exists(v) else d:
+    return 
 
 def softclamp(t, value):
-    if v <= 0. >:
-        return t
-    return (t/value).tanh() * value
+    if :
+        return 
+    return 
 ```
 
     - Back:
@@ -74,14 +74,15 @@ myqa:: why is there inner function inside of create_pizero_atten_mask?  what is 
 ```python
 flex_attention = None
 
-if :
-    from 
-    flex_attention = 
+if torch.cuda.is_available() :
+    from torch.nn.attention.flex_attention import flex_attention , create_block_mask
+    flex_attention = None
 
 def create_pizero_attn_mask(prefix_causal_length):
-    def inner(??? , ??? , ??? , ???):
+    def inner(batch_index , head_index , query_index , key_index):
         return (
-
+            query_index >= key_index and 
+            key_index >= prefix_causal_length
         )
         
     return inner
@@ -92,12 +93,12 @@ def softclamp_score_mod(value):
         Used for numerical stability in attention computation
         """
         def identity():
-            return score
+            
 
         def softclamped():
-            score = 
-            score =  
-            score =
+            score = score/value
+            score = torch.tanh(score)
+            score = score * value
             return score
 
         return softclamped if value > 0. else identity
@@ -175,24 +176,27 @@ def softclamp_score_mod(value):
 
 Front:
 How does π0 implement time conditioning using random Fourier features, and why is this choice important?
-myqa:: what is random projection matrix? how does this rearrange work  rearrange(times, '... -> ... 1')? How does it project to higher dimension and whyu is it called rand_proj? how does ada_ln zero work? 
+myqa:: what is random projection matrix and why does it go to ? how does this rearrange work  rearrange(times, '... -> ... 1')? How does it project to higher dimension and whyu is it called rand_proj? how does ada_ln zero work? 
 
 
 ```python
 class RandomFourierEmbed(Module):
     def __init__(self, dim):
         super.__init__()
-        # create random projection matrix 
+        # create random projection matrix called projection matrices
         
         # Freeze the weights 
+        
         
 
 
     def forward(self, times):
         #Reshape to dimension 1
         
+        
         # Project to hihger dimension
         
+
         #Apply periodic transportation
         
 ```
@@ -252,7 +256,7 @@ class RandomFourierEmbed(Module):
 
 Front:
 How does π0 implement adaptive normalization for time-conditioned features?
-myqa:: what is elementwise_affline? I know what affline forward is. 
+myqa:: what is elementwise_affline? I know what affline forward is. What does bounded and unbounded mean? 
 
 
 ```python
